@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
       attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
     }
   })
-})
   .then(dbCatData => {
     if(!dbCatData) {
       res.status(404).json({nessage: 'No Categories Were Found'});
@@ -22,6 +21,7 @@ router.get('/', (req, res) => {
     console.log(err);
     res.status(500).json(err)
   });
+});
 
 
 
@@ -35,17 +35,17 @@ router.get('/:id', (req, res) => {
       attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
     }
   })
-})
-.then(dbCatData => {
-  if(!dbCatData) {
-    res.status(404).json({nessage: 'No Categories Were Found'});
-    return
-  }
-  res.json(dbCatData);
-})
-.catch(err => {
-  console.log(err);
-  res.status(500).json(err)
+  .then(dbCatData => {
+    if(!dbCatData) {
+      res.status(404).json({nessage: 'No Categories Were Found'});
+      return
+    }
+    res.json(dbCatData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err)
+  });
 });
 
 
