@@ -5,7 +5,7 @@ const { Category, Product } = require('../../models');
 
 router.get('/', (req, res) => {
   Category.findAll({
-    incliude: {
+    include: {
       model: Product,
       attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
     }
@@ -37,8 +37,8 @@ router.get('/:id', (req, res) => {
   })
   .then(dbCatData => {
     if(!dbCatData) {
-      res.status(404).json({nessage: 'No Categories Were Found'});
-      return
+      res.status(404).json({message: 'No Categories Were Found'});
+      return;
     }
     res.json(dbCatData);
   })
